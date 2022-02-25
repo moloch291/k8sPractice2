@@ -9,9 +9,9 @@ def evaluate_pods(pods_info):
         os.system(
             f"kubectl port-forward {sys.argv[3]}/{sys.argv[1]} 8080:8080 --namespace={sys.argv[2]}"
         )
-        print("\nPort-forwarding cancelled!")
+        print("\nPort-forwarding cancelled...")
         exit(0)
-    print("Pods does not exist in this namespace!")
+    print("Port-forwarding unsuccessful...")
 
 
 def get_output(command):
