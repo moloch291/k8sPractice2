@@ -4,11 +4,11 @@ import os
 
 
 def evaluate_pods(pods_info):
-    for line in pods_info:
-        if sys.argv[2] in line:
-            os.system(
-                f"kubectl port-forward {sys.argv[2]} 8080:8080 --namespace={sys.argv[1]}"
-            )
+    if sys.argv[2] in pods_info:
+        os.system(
+            f"kubectl port-forward {sys.argv[2]} 8080:8080 --namespace={sys.argv[1]}"
+        )
+        exit(0)
     print("Pod does not exist in this namespace!")
 
 
@@ -20,7 +20,7 @@ def out(command):
 
 
 def main():
-    pods_info = out("kubectl get pods --namespace=" + sys.argv[1]).split("\n")
+    pods_info = out("kubectl get pods --namespace=" + sys.argv[1])
     evaluate_pods(pods_info)
 
 
