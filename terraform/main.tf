@@ -8,6 +8,7 @@ module "practice-resources" {
   namespace_name   = "practice-ns"
   pod_name         = "kuard-pod"
   container_img    = "gcr.io/kuar-demo/kuard-amd64:blue"
+  container_port   = 8080
   lp_http_get_path = "/healthy"
   lp_http_get_port = 8080
   rp_http_get_path = "/ready"
@@ -23,5 +24,15 @@ module "practice-resources" {
   rp_time_conf = {
     init_delay_sec = 50
     timeout_sec    = 1
+  }
+
+  pod_resource_req = {
+    cpu    = "500m"
+    memory = "128Mi"
+  }
+
+  pod_resource_limit = {
+    cpu    = "1000m"
+    memory = "256Mi"
   }
 }
