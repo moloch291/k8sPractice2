@@ -7,8 +7,10 @@ import os
 def evaluate_pods(pods_info):
     if sys.argv[1] in pods_info:
         os.system(
-            f"kubectl port-forward replicationcontroller/{sys.argv[1]} 8080:8080 --namespace={sys.argv[2]}"
+            f"kubectl port-forward {sys.argv[3]}/{sys.argv[1]} 8080:8080 --namespace={sys.argv[2]}"
         )
+        print("\nPort-forwarding cancelled!")
+        exit(0)
     print("Pods does not exist in this namespace!")
 
 
@@ -21,7 +23,7 @@ def get_output(command):
 
 def main():
     pods_info = get_output(
-        f"kubectl get replicationcontrollers --namespace={sys.argv[2]}"
+        f"kubectl get {sys.argv[3]}s --namespace={sys.argv[2]}"
     )
     evaluate_pods(pods_info)
 
