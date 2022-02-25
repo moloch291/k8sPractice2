@@ -15,17 +15,17 @@ resource "kubernetes_replication_controller" "kuard_rc" {
 
   spec {
     selector = {
-      name = "kuard-rc"
+      name = var.pod_name
     }
 
     template {
 
       metadata {
         labels = {
-          name = "kuard-rc"
+          name = var.pod_name
         }
         annotations = {
-          name = "kuard-rc"
+          name = var.pod_name
         }
       }
 
